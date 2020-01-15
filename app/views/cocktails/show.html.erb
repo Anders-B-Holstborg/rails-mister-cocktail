@@ -4,5 +4,7 @@
 <h3><%= dose.ingredient.name %></h3>
 <p><%= dose.description %></p>
 <% end %>
+<p>How it's done!</p>
+<%= @cocktail.note %>
 <p><%= link_to "Add ingredient", new_cocktail_dose_path(@cocktail) %></p>
 <p><%= link_to "Back to cocktails", :root %></p>

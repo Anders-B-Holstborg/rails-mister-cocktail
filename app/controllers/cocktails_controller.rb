@@ -9,6 +9,7 @@ class CocktailsController < ApplicationController
     @cocktail.doses.each do |dose|
       @doses << dose
     end
+    @note = @cocktail.note
   end
 
   def new
@@ -17,9 +18,7 @@ class CocktailsController < ApplicationController
 
   def create
     @cocktail = Cocktail.new(cocktail_params)
-    if @cocktail.save
-      redirect_to new_cocktail_dose_path(@cocktail)
-    end
+    redirect_to new_cocktail_dose_path(@cocktail) if @cocktail.save
   end
 
   def edit
@@ -34,6 +33,6 @@ class CocktailsController < ApplicationController
   private
 
   def cocktail_params
-    params.require(:cocktail).permit(:name)
+    params.require(:cocktail).permit(:name, :note)
   end
 end
