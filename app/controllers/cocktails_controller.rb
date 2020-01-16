@@ -1,4 +1,6 @@
 class CocktailsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :index
+
   def index
     @cocktails = Cocktail.all
   end
@@ -17,7 +19,9 @@ class CocktailsController < ApplicationController
   end
 
   def create
-    @cocktail = Cocktail.new(cocktail_params)
+    args = cocktail_params
+    args["user_id"] = current_user.id
+    @cocktail = Cocktail.new(args)
     redirect_to new_cocktail_dose_path(@cocktail) if @cocktail.save
   end
 
@@ -33,6 +37,6 @@ class CocktailsController < ApplicationController
   private
 
   def cocktail_params
-    params.require(:cocktail).permit(:name, :note)
+    params.require(:cocktail).permit(:name, :note, :user_id)
   end
 end

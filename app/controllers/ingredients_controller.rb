@@ -14,7 +14,6 @@ class IngredientsController < ApplicationController
   def create
     @ingredient = Ingredient.new(params[@ingredient])
     @ingredient.save
-
   end
 
   def edit
