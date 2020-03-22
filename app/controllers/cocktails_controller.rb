@@ -10,9 +10,7 @@ class CocktailsController < ApplicationController
   end
 
   def create
-    args = cocktail_params
-    args['user_id'] = current_user.id
-    @cocktail = Cocktail.new(args)
+    @cocktail = Cocktail.new(extended_cocktail_params)
     if @cocktail.save
       redirect_to new_cocktail_dose_path(@cocktail)
     else
@@ -59,5 +57,10 @@ class CocktailsController < ApplicationController
 
   def cocktail_params
     params.require(:cocktail).permit(:name, :note, :user_id)
+  end
+
+  def extended_cocktail_params
+    args = cocktail_params
+    args['user_id'] = current_user.id
   end
 end
