@@ -60,7 +60,6 @@ class CocktailsController < ApplicationController
   end
 
   def extended_cocktail_params
-    args = cocktail_params
-    args['user_id'] = current_user.id
+    final_params = cocktail_params.merge(user_id: current_user.id)
   end
 end
