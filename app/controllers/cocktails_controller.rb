@@ -5,8 +5,23 @@ class CocktailsController < ApplicationController
     @cocktails = Cocktail.all
   end
 
+  def new
+    @cocktail = Cocktail.new
+  end
+
+  def create
+    args = cocktail_params
+    args['user_id'] = current_user.id
+    @cocktail = Cocktail.new(args)
+    if @cocktail.save
+      redirect_to new_cocktail_dose_path(@cocktail)
+    else
+      render :new
+    end
+  end
+
   def show
-    @cocktail = Cocktail.find(params[:id])
+    @cocktail = find_cocktail
     @doses = []
     @cocktail.doses.each do |dose|
       @doses << dose
@@ -14,27 +29,33 @@ class CocktailsController < ApplicationController
     @note = @cocktail.note
   end
 
-  def new
-    @cocktail = Cocktail.new
-  end
-
-  def create
-    args = cocktail_params
-    args["user_id"] = current_user.id
-    @cocktail = Cocktail.new(args)
-    redirect_to new_cocktail_dose_path(@cocktail) if @cocktail.save
-  end
-
   def edit
+    @cocktail = find_cocktail
   end
 
   def update
+    @cocktail = find_cocktail
+    if @cocktail.update(cocktail_params)
+      redirect_to cocktail_path(@cocktail)
+    else
+      render :new
+    end
   end
 
   def destroy
+    @cocktail = find_cocktail
+    if @cocktail.destroy
+      redirect_to cocktails_path
+    else
+      render :new
+    end
   end
 
   private
+
+  def find_cocktail
+    @cocktail = Cocktail.find(params[:id])
+  end
 
   def cocktail_params
     params.require(:cocktail).permit(:name, :note, :user_id)

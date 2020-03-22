@@ -1,10 +1,12 @@
-<h1><%= @cocktail.name %></h1>
-<h2><b>Proceed as follows:</b></h2>
-<% @cocktail.doses.each do |dose| %>
-<h3><%= dose.ingredient.name %></h3>
-<p><%= dose.description %></p>
-<% end %>
-<p>How it's done!</p>
-<%= @cocktail.note %>
-<p><%= link_to "Add ingredient", new_cocktail_dose_path(@cocktail) %></p>
-<p><%= link_to "Back to cocktails", :root %></p>
+<div class="container">
+  <h1><%= @cocktail.name %></h1>
+  <h2><b>Proceed as follows:</b></h2>
+  <% @cocktail.doses.each do |dose| %>
+    <h3><%= dose.ingredient.name %></h3>
+    <p><%= dose.description %></p>
+  <% end %>
+  <p><%= link_to "Add ingredient", new_cocktail_dose_path(@cocktail) %></p>
+  <h2><b>About this cocktail:</b></h2>
+  <%= @cocktail.note if @cocktail.note %>
+  <p><%= link_to "Back to cocktails", :root %></p>
+</div>

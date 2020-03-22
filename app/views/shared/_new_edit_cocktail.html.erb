@@ -1,0 +1,5 @@
+<%= simple_form_for @cocktail do |f| %>
+  <%= f.input :name %>
+  <%= f.input :note, label: 'Describe your cocktail!' %>
+  <%= f.submit "All set", class: "btn btn-primary" %>
+<% end %>
