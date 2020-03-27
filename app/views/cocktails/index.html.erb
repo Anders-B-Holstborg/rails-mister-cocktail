@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Cocktails:</h1>
+  <h1 class="header mt-3">Cocktails:</h1>
   <div class="row">
     <% @cocktails.each do |cocktail| %>
       <div class="col-4 card-body">
@@ -9,5 +9,7 @@
       </div>
     <% end %>
   </div>
-  <h2><b> <%= link_to "Create new cocktail!", new_cocktail_path %> </b></h2>
+  <div class="text-center">
+    <h2><b> <%= button_to "Create new cocktail!", new_cocktail_path, method: :get, class: "btn-lg btn-primary" %> </b></h2>
+  </div>
 </div>
