@@ -1,8 +1,12 @@
 <div class="container">
-	<h1>Present thine alchemy</h1>
+	<% if @cocktail.doses.empty? %>
+	  <h1>Present thine alchemy - add the first ingredient!</h1>
+	<% else %>
+	  <h1>Present thine alchemy - add more ingredients</h1>
+	<% end %>
 	<%= simple_form_for [@cocktail, @dose] do |f| %>
-	  <%= f.input :description %>
 	  <%= f.association :ingredient %>
+	  <%= f.input :description, label: "How much, and in which way should this be added?" %>
 	  <%= f.submit "Submit superb drink formulae", class: "btn btn-primary" %>
 	<% end %>
 </div>
