@@ -6,7 +6,7 @@
     <p class="mb-3"><%= dose.description %></p>
   <% end %>
   <br>
-  <p><%= button_to "Add ingredient", new_cocktail_dose_path(@cocktail), method: :get, class: "btn-lg btn-primary" %></p>
+  <p><%= button_to "Add ingredient", new_cocktail_dose_path(@cocktail), method: :get, class: "btn-lg btn-info" %></p>
   <h2 class="mt-5"><b>About this cocktail:</b></h2>
   <%= @cocktail.note if @cocktail.note %>
   <p><%= button_to "Back to cocktails", root_path, method: :get, class: "btn-lg btn-primary mt-2" %></p>
