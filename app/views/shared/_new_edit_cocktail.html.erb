@@ -1,5 +1,6 @@
 <%= simple_form_for @cocktail do |f| %>
   <%= f.input :name %>
   <%= f.input :note, label: 'Describe your cocktail!' %>
+  <%= f.input :photo, as: :file, label: 'Show us the result if you wish!' %>
   <%= f.submit "All set", class: "btn-lg btn-primary" %>
 <% end %>

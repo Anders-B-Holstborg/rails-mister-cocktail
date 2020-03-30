@@ -2,9 +2,16 @@
   <h1 class="header mt-3">Cocktails:</h1>
   <div class="row">
     <% @cocktails.each do |cocktail| %>
-      <div class="col-4 card-body">
-        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
-          <%= link_to "#{cocktail.name}", cocktail_path(cocktail.id) %>
+      <div class="col-4">
+        <div class="card center">
+          <div class="card-body">
+              <% if cocktail.photo.attached? %>
+                <%= cl_image_tag cocktail.photo.key, height: 400, width: 600, crop: :fill %>
+              <% else %>
+                <%= image_tag "default_cocktail_image.jpg", alt: "Le Wagon", width: 328, crop: :fill %>
+              <% end %>
+              <p class="card-text"> <%= link_to "#{cocktail.name}", cocktail_path(cocktail.id) %> </p>
+          </div>
         </div>
       </div>
     <% end %>
