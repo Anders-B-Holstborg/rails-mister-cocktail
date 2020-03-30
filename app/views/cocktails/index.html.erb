@@ -6,11 +6,11 @@
         <div class="card center">
           <div class="card-body">
               <% if cocktail.photo.attached? %>
-                <%= cl_image_tag cocktail.photo.key, height: 400, width: 600, crop: :fill %>
+                <%= cl_image_tag cocktail.photo.key, width: 348, crop: :fill %>
               <% else %>
-                <%= image_tag "default_cocktail_image.jpg", alt: "Le Wagon", width: 328, crop: :fill %>
+                <%= image_tag "default_cocktail_image.jpg", alt: "Le Wagon", width: 348, crop: :fill %>
               <% end %>
-              <p class="card-text"> <%= link_to "#{cocktail.name}", cocktail_path(cocktail.id) %> </p>
+              <p> <%= link_to "#{cocktail.name}", cocktail_path(cocktail.id) %> </p>
           </div>
         </div>
       </div>
