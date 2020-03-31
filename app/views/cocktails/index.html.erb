@@ -3,14 +3,16 @@
   <div class="row">
     <% @cocktails.each do |cocktail| %>
       <div class="col-4">
-        <div class="card center">
+        <div class="card">
+
+            <% if cocktail.photo.attached? %>
+              <%= cl_image_tag cocktail.photo.key, width: 348, height: 348, crop: :fill %>
+            <% else %>
+              <%= image_tag "default_cocktail_image.jpg", alt: "In all its glory!", width: 348, height: 348, crop: :fill %>
+            <% end %>
+
           <div class="card-body">
-              <% if cocktail.photo.attached? %>
-                <%= cl_image_tag cocktail.photo.key, width: 348, crop: :fill %>
-              <% else %>
-                <%= image_tag "default_cocktail_image.jpg", alt: "Le Wagon", width: 348, crop: :fill %>
-              <% end %>
-              <p> <%= link_to "#{cocktail.name}", cocktail_path(cocktail.id) %> </p>
+            <p> <%= link_to "#{cocktail.name}", cocktail_path(cocktail.id) %> </p>
           </div>
         </div>
       </div>

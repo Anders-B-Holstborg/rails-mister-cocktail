@@ -4,11 +4,11 @@
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: #ffffff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 2px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .card-category {
@@ -30,10 +30,17 @@
 }
 
 .card-body {
-  padding: 0px;
+  padding: 0px 0px;
   p {
-    padding-top: 12px;
+    padding: 12px 0px;
+    margin-bottom: 8px;
     font-size: xx-large;
     text-align: center;
   }
+}
+
+.card-image {
+  width: 348px;
+  height: 348px;
+  object-fit: cover;
 }
